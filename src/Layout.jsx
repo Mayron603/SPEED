@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from './utils';
-import { Menu, X } from 'lucide-react'; // Removemos o Shield daqui
+import { Menu, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const navItems = [
   { label: "Início", page: "Home" },
@@ -13,9 +14,17 @@ const navItems = [
 
 export default function Layout({ children, currentPageName }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  // Rastreador do movimento do rato para o cursor tático
+  useEffect(() => {
+    const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans">
+    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans cursor-crosshair">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         :root {
@@ -31,14 +40,23 @@ export default function Layout({ children, currentPageName }) {
         }
       `}</style>
 
+      {/* CURSOR TÁTICO CUSTOMIZADO */}
+      <motion.div 
+        className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] hidden md:flex items-center justify-center mix-blend-difference"
+        animate={{ x: mousePos.x - 16, y: mousePos.y - 16 }}
+        transition={{ type: 'spring', damping: 30, stiffness: 200, mass: 0.2 }}
+      >
+        <div className="w-full h-full rounded-full border border-amber-500/50 relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-amber-500 rounded-full" />
+        </div>
+      </motion.div>
+
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             
-            {/* Logo Atualizada */}
             <Link to={createPageUrl('Home')} className="flex items-center gap-3">
-              {/* h-12 define uma altura bem maior, e w-auto mantém a qualidade e proporção original */}
               <img src="/logo.png" alt="Logo ASD" className="h-16 w-auto object-contain drop-shadow-md" />
               <span className="text-white font-black text-base tracking-wider hidden sm:block">ASD</span>
             </Link>
@@ -49,9 +67,9 @@ export default function Layout({ children, currentPageName }) {
                 <Link
                   key={item.page}
                   to={createPageUrl(item.page)}
-                  className={`px-4 py-2 rounded-lg text-xs font-medium tracking-wider uppercase transition-all duration-200 ${
+                  className={`px-4 py-2 rounded-lg text-xs font-medium tracking-wider uppercase transition-all duration-200 hover:scale-105 active:scale-95 ${
                     item.highlight
-                      ? 'bg-amber-500 text-slate-950 hover:bg-amber-400'
+                      ? 'bg-amber-500 text-slate-950 hover:bg-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
                       : currentPageName === item.page
                         ? 'text-amber-400 bg-amber-500/10'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
