@@ -46,8 +46,8 @@ export default function Layout({ children, currentPageName }) {
         animate={{ x: mousePos.x - 16, y: mousePos.y - 16 }}
         transition={{ type: 'spring', damping: 30, stiffness: 200, mass: 0.2 }}
       >
-        <div className="w-full h-full rounded-full border border-amber-500/50 relative">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-amber-500 rounded-full" />
+        <div className="w-full h-full rounded-full border border-emerald-500/50 relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-emerald-500 rounded-full" />
         </div>
       </motion.div>
 
@@ -57,8 +57,8 @@ export default function Layout({ children, currentPageName }) {
           <div className="flex items-center justify-between h-16">
             
             <Link to={createPageUrl('Home')} className="flex items-center gap-3">
-              <img src="/logo.png" alt="Logo ASD" className="h-16 w-auto object-contain drop-shadow-md" />
-              <span className="text-white font-black text-base tracking-wider hidden sm:block">ASD</span>
+              <img src="/logo.png" alt="Logo SPEED" className="h-16 w-auto object-contain drop-shadow-md" />
+              <span className="text-white font-black text-base tracking-wider hidden sm:block">SPEED</span>
             </Link>
 
             {/* Desktop Nav */}
@@ -69,9 +69,9 @@ export default function Layout({ children, currentPageName }) {
                   to={createPageUrl(item.page)}
                   className={`px-4 py-2 rounded-lg text-xs font-medium tracking-wider uppercase transition-all duration-200 hover:scale-105 active:scale-95 ${
                     item.highlight
-                      ? 'bg-amber-500 text-slate-950 hover:bg-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
+                      ? 'bg-emerald-500 text-slate-950 hover:bg-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.2)]'
                       : currentPageName === item.page
-                        ? 'text-amber-400 bg-amber-500/10'
+                        ? 'text-emerald-400 bg-emerald-500/10'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                   }`}
                 >
@@ -101,9 +101,9 @@ export default function Layout({ children, currentPageName }) {
                   onClick={() => setMobileOpen(false)}
                   className={`block px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                     item.highlight
-                      ? 'bg-amber-500 text-slate-950'
+                      ? 'bg-emerald-500 text-slate-950'
                       : currentPageName === item.page
-                        ? 'text-amber-400 bg-amber-500/10'
+                        ? 'text-emerald-400 bg-emerald-500/10'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                   }`}
                 >

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Crown, GraduationCap, Star, Plane, Users, Target, Shield, Crosshair } from 'lucide-react';
+import { Crown, GraduationCap, Star, Shield, Zap } from 'lucide-react';
 import PageHeader from '../components/shared/PageHeader';
 import Footer from '../components/shared/Footer';
 
-const pilotRanks = [
+const speedRanks = [
   {
     tier: "Alto Comando",
     tierColor: "text-amber-400",
@@ -12,22 +12,12 @@ const pilotRanks = [
     ranks: [
       {
         title: "Comando de Unidade",
-        description: "Responsável pela administração geral e diretrizes da divisão.",
+        description: "Responsável pela administração geral, diretrizes operacionais e decisões finais da SPEED.",
         responsibilities: [
-          "Administração geral da ASD",
+          "Administração geral e representação da divisão perante outras unidades",
           "Definição de diretrizes operacionais e estratégicas",
-          "Representação da divisão perante as demais unidades",
-          "Decisões finais sobre promoções e disciplina"
-        ]
-      },
-      {
-        title: "Sub Comando",
-        description: "Auxilia o comando na gestão e supervisiona as operações diárias.",
-        responsibilities: [
-          "Apoio direto ao Comando de Unidade",
-          "Supervisão das operações diárias",
-          "Coordenação de escalas e patrulhamentos",
-          "Gestão interna da divisão na ausência do Comando"
+          "Decisões finais sobre promoções, advertências ou expulsões",
+          "Comandante Atual: Victor Sete"
         ]
       }
     ]
@@ -38,141 +28,57 @@ const pilotRanks = [
     tierIcon: GraduationCap,
     ranks: [
       {
-        title: "Instrutor Chefe",
-        description: "Coordena o corpo de instrutores e o padrão de treinamento.",
+        title: "Instrutor SPEED",
+        description: "Responsável por treinar, avaliar e garantir que todos os pilotos sejam proficientes e tenham autoconhecimento na cidade.",
         responsibilities: [
-          "Coordenação de todos os instrutores",
-          "Definição e manutenção do padrão de treinamento",
-          "Avaliação e aprovação de novos membros",
-          "Atualização dos manuais e procedimentos"
-        ]
-      },
-      {
-        title: "Instrutor",
-        description: "Responsável por aplicar os treinamentos teóricos e práticos aos novos membros.",
-        responsibilities: [
-          "Aplicação de treinamentos teóricos e práticos",
-          "Acompanhamento do desenvolvimento dos estagiários",
-          "Elaboração de relatórios de desempenho",
-          "Suporte ao Instrutor Chefe nas avaliações"
+          "Aplicação de treinamentos teóricos e práticos de direção e tática",
+          "Avaliação contínua do desempenho, postura e disciplina de Recrutas e Operadores",
+          "Manutenção do padrão de alta performance nas interceptações",
+          "Aprovação e recomendação de promoções"
         ]
       }
     ]
   },
   {
-    tier: "Oficiais de Voo",
-    tierColor: "text-green-400",
+    tier: "Supervisão",
+    tierColor: "text-purple-400",
     tierIcon: Star,
     ranks: [
       {
-        title: "Comandante Sênior",
-        description: "Piloto experiente com domínio total da aeronave e táticas.",
+        title: "Supervisor SPEED",
+        description: "Supervisiona as operações diárias e garante o cumprimento irrestrito do Manual de Conduta em campo.",
         responsibilities: [
-          "Liderança em operações de alta complexidade",
-          "Mentoria de Comandantes e copilotos",
-          "Tomada de decisão em campo",
-          "Execução de todas as modalidades de voo e táticas"
-        ]
-      },
-      {
-        title: "Comandante",
-        description: "Piloto qualificado para operações padrão.",
-        responsibilities: [
-          "Condução de patrulhamentos e operações padrão",
-          "Apoio tático às unidades terrestres",
-          "Comunicação operacional via rádio",
-          "Cumprimento dos procedimentos e manuais"
+          "Organização tática durante patrulhamentos e acompanhamentos",
+          "Liderança operacional e tomada de decisões rápidas via rádio",
+          "Autorização de táticas específicas, como obstruções totais de via (após 15 min)",
+          "Garantir a modulação correta e o respeito entre as viaturas na perseguição"
         ]
       }
     ]
   },
   {
-    tier: "Membros Operacionais",
-    tierColor: "text-slate-400",
-    tierIcon: Plane,
+    tier: "Operacional",
+    tierColor: "text-emerald-400",
+    tierIcon: Zap,
     ranks: [
       {
-        title: "Co-Piloto",
-        description: "Auxilia na navegação, operação de câmera e comunicação.",
+        title: "Operador SPEED",
+        description: "Membro oficial e proficiente, atua diretamente nas interceptações de veículos de alta performance.",
         responsibilities: [
-          "Apoio ao piloto durante operações",
-          "Operação de câmera (FLIR/DTV) e holofote",
-          "Comunicação e monitoramento de rádio",
-          "Acúmulo de horas de voo supervisionadas"
+          "Atuar como viatura primária, secundária ou terciária com total domínio técnico",
+          "Manter o visual do veículo sem antecipações e realizar modulação precisa",
+          "Conhecimento profundo de becos, vielas e rotas de fuga comuns",
+          "Priorizar a própria vida, dos civis e evitar colisões (distanciamento seguro)"
         ]
       },
       {
-        title: "Estagiário",
-        description: "Membro em fase de aprendizado e adaptação à unidade.",
+        title: "Recruta SPEED",
+        description: "Policial Sênior+ recém-admitido na unidade, em fase de avaliação de conduta e habilidade.",
         responsibilities: [
-          "Participação em todos os treinamentos programados",
-          "Estudo e memorização dos manuais da ASD",
-          "Seguir ordens de todos os superiores hierárquicos",
-          "Demonstrar disciplina e comprometimento contínuo"
-        ]
-      }
-    ]
-  }
-];
-
-const shooterRanks = [
-  {
-    tier: "Comando Tático de Atiradores",
-    tierColor: "text-red-400",
-    tierIcon: Target,
-    ranks: [
-      {
-        title: "Atirador Chefe",
-        description: "Responsável pela coordenação dos atiradores, definição de posicionamento e estratégia de engajamento.",
-        responsibilities: [
-          "Coordenação geral dos atiradores em operações",
-          "Definição de posicionamento e estratégia de engajamento",
-          "Comunicação direta com o piloto durante missões",
-          "Decisão de abertura de fogo em situações críticas"
-        ]
-      }
-    ]
-  },
-  {
-    tier: "Operadores",
-    tierColor: "text-orange-400",
-    tierIcon: Crosshair,
-    ranks: [
-      {
-        title: "Atirador Sênior",
-        description: "Operador experiente com autonomia em decisões de disparo e cobertura.",
-        responsibilities: [
-          "Operações de cobertura aérea com alto nível de autonomia",
-          "Apoio ao Atirador Chefe em decisões táticas",
-          "Execução de engajamentos em situações de alto risco",
-          "Mentoria de atiradores em formação"
-        ]
-      },
-      {
-        title: "Atirador",
-        description: "Responsável pelo suporte armado e cobertura aérea durante as operações.",
-        responsibilities: [
-          "Suporte armado durante operações aéreas",
-          "Cobertura e proteção das unidades terrestres",
-          "Seguimento das diretrizes do Atirador Chefe",
-          "Comunicação constante sobre condições de engajamento"
-        ]
-      }
-    ]
-  },
-  {
-    tier: "Formação",
-    tierColor: "text-slate-400",
-    tierIcon: Shield,
-    ranks: [
-      {
-        title: "Atirador em Treinamento",
-        description: "Membro em fase de capacitação técnica e adaptação às diretrizes da ASD.",
-        responsibilities: [
-          "Participação em todos os treinamentos da cadeia de atiradores",
-          "Aprendizado dos protocolos de engajamento",
-          "Obediência à hierarquia de atiradores e pilotos",
-          "Desenvolvimento de habilidades técnicas e táticas"
+          "Participar de acompanhamentos seguindo estritamente as ordens superiores",
+          "Aprender e aplicar conceitos de posicionamento (Corredor, Cerco e Roadblock)",
+          "Demonstrar capacidade operacional, disciplina e respeito à hierarquia",
+          "Auxiliar como P2 de um motorista oficial da unidade quando necessário"
         ]
       }
     ]
@@ -193,7 +99,7 @@ function RankCard({ rank, index }) {
       <ul className="space-y-1.5">
         {rank.responsibilities.map((r, i) => (
           <li key={i} className="flex items-start gap-2 text-sm text-slate-400">
-            <span className="w-1 h-1 rounded-full bg-amber-500 mt-2 flex-shrink-0" />
+            <span className="w-1 h-1 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
             {r}
           </li>
         ))}
@@ -229,62 +135,31 @@ function TierSection({ tier, index }) {
 }
 
 export default function Hierarchy() {
-  const [activeTab, setActiveTab] = useState('pilotos');
-
   return (
     <div>
       <PageHeader
         badge="Cadeia de Comando"
         title="Estrutura Hierárquica"
-        subtitle="A hierarquia interna da ASD deve ser respeitada a todo momento, independentemente da patente policial externa."
+        subtitle="A SPEED possui uma hierarquia interna que deve ser respeitada a todo momento durante patrulhamentos, acompanhamentos e perseguições."
       />
 
       <section className="py-20 bg-slate-950">
         <div className="max-w-5xl mx-auto px-6">
-          {/* Tabs */}
-          <div className="flex gap-3 mb-12">
-            <button
-              onClick={() => setActiveTab('pilotos')}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-semibold transition-all ${
-                activeTab === 'pilotos'
-                  ? 'bg-amber-500/20 border-amber-500/30 text-amber-400'
-                  : 'border-slate-800 text-slate-400 hover:border-slate-700'
-              }`}
-            >
-              <Plane className="w-4 h-4" /> Pilotos
-            </button>
-            <button
-              onClick={() => setActiveTab('atiradores')}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-sm font-semibold transition-all ${
-                activeTab === 'atiradores'
-                  ? 'bg-red-500/20 border-red-500/30 text-red-400'
-                  : 'border-slate-800 text-slate-400 hover:border-slate-700'
-              }`}
-            >
-              <Crosshair className="w-4 h-4" /> Atiradores
-            </button>
+          <div className="bg-slate-900/30 border border-slate-800 rounded-xl p-5 mb-12 flex items-start gap-4">
+            <Shield className="w-6 h-6 text-emerald-400 flex-shrink-0 mt-0.5" />
+            <div>
+              <h4 className="text-white font-semibold mb-1">Critérios de Promoção</h4>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Não há tempo mínimo ou máximo para promoção na unidade. A progressão de patente é baseada exclusivamente no desempenho, postura, disciplina, capacidade operacional e comprometimento do policial com as diretrizes da SPEED.
+              </p>
+            </div>
           </div>
 
-          {activeTab === 'pilotos' && (
-            <div>
-              <p className="text-slate-500 text-xs tracking-wider uppercase mb-8">Hierarquia de Pilotos — ASD</p>
-              {pilotRanks.map((tier, index) => (
-                <TierSection key={tier.tier} tier={tier} index={index} />
-              ))}
-            </div>
-          )}
-
-          {activeTab === 'atiradores' && (
-            <div>
-              <p className="text-slate-500 text-xs tracking-wider uppercase mb-8">Hierarquia de Atiradores — ASD</p>
-              <div className="bg-slate-900/30 border border-slate-800 rounded-xl p-4 mb-8 text-sm text-slate-400">
-                A hierarquia dos Atiradores Aéreos é <span className="text-white font-semibold">independente</span> da cadeia de pilotos, devendo ser respeitada dentro das operações táticas da aeronave.
-              </div>
-              {shooterRanks.map((tier, index) => (
-                <TierSection key={tier.tier} tier={tier} index={index} />
-              ))}
-            </div>
-          )}
+          <div className="space-y-4">
+            {speedRanks.map((tier, index) => (
+              <TierSection key={tier.tier} tier={tier} index={index} />
+            ))}
+          </div>
         </div>
       </section>
 

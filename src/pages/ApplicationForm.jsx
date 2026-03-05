@@ -16,7 +16,7 @@ const initialForm = {
   age: "",
   availability: "",
   role: "", 
-  previous_air_unit: "",
+  previous_special_unit: "",
   radio_experience: "",
   q1: "",
   q2: "",
@@ -27,18 +27,18 @@ const initialForm = {
 
 const roleQuestions = {
   piloto: [
-    { field: 'q1', label: 'Explique a função do comando Coletivo.' },
-    { field: 'q2', label: 'O que é o Efeito Solo e como o piloto deve reagir?' },
-    { field: 'q3', label: 'Qual o posicionamento correto da aeronave durante uma Curva de Perseguição?' },
-    { field: 'q4', label: 'Descreva o procedimento correto para uma Auto-rotação.' },
-    { field: 'q5', label: 'Explique a diferença tática entre a Órbita Alta e a Órbita Baixa.' },
+    { field: 'q1', label: '1. Qual a função principal da Unidade SPEED?' },
+    { field: 'q2', label: '2. Como a Viatura Primária deve agir nas curvas e cruzamentos para não perder o suspeito?' },
+    { field: 'q3', label: '3. Qual é a regra estabelecida no manual sobre a utilização da manobra PIT?' },
+    { field: 'q4', label: '4. Durante um acompanhamento, o que deve ser priorizado acima de tudo?' },
+    { field: 'q5', label: '5. Se uma viatura comum pedir apoio (secundária), quando a SPEED pode assumir a primária?' },
   ],
-  atirador: [
-    { field: 'q1', label: 'Como deve ser feita a orientação de unidades de solo usando o "Clock System"?' },
-    { field: 'q2', label: 'Qual a regra de ouro para o uso do Holofote (Nightsun)?' },
-    { field: 'q3', label: 'O que é a Visão Térmica (FLIR) e em quais situações é essencial?' },
-    { field: 'q4', label: 'O que acontece quando a ASD solicita "Prioridade de Rádio" em um Código 3?' },
-    { field: 'q5', label: 'Defina o significado exato das siglas: RTB, POB e ETA.' },
+  p2: [
+    { field: 'q1', label: '1. Qual é a modulação exata para assumir a viatura primária?' },
+    { field: 'q2', label: '2. Qual é a restrição mais importante em relação à troca de lugares entre o P2 e o Motorista?' },
+    { field: 'q3', label: '3. Como deve ser o comportamento da Viatura Secundária ao chegar em becos e vielas?' },
+    { field: 'q4', label: '4. Qual é a modulação correta para a "Finalização de Acompanhamento"?' },
+    { field: 'q5', label: '5. Quando é permitido realizar a obstrução de 100% (roadblock) na saída de um beco?' },
   ]
 };
 
@@ -67,20 +67,20 @@ export default function ApplicationForm() {
     const embedColor = 2829617; // Cor #2B2D31 (Fundo exato do Discord para ficar invisível)
 
     const payload = {
-      username: "Central de Recrutamento ASD",
+      username: "Central de Recrutamento SPEED",
       // COLE O LINK DA SUA LOGO DO DISCORD AQUI ABAIXO:
       avatar_url: "https://cdn.discordapp.com/attachments/1110324893750403072/1478398654426382396/logo.png?ex=69a8418a&is=69a6f00a&hm=5b7e73ed52d7bca432043dfbe296093cb2fa4a5f4c775bd4fad10368270fa478&", 
       embeds: [
         {
           title: `NOVA CANDIDATURA RECEBIDA - ${formData.role.toUpperCase()}`,
-          description: `O candidato **${formData.qra}** submeteu o formulário para a vaga de **${formData.role.toUpperCase()}**.`,
+          description: `O candidato **${formData.qra}** submeteu o formulário para atuar como **${formData.role.toUpperCase()}**.`,
           color: embedColor,
           fields: [
             { name: "QRA", value: formData.qra || "N/A", inline: true },
             { name: "Badge", value: formData.badge || "N/A", inline: true },
             { name: "Idade", value: formData.age || "N/A", inline: true },
             { name: "Disponibilidade", value: formData.availability || "N/A", inline: true },
-            { name: "Unidade Aérea Anterior", value: formData.previous_air_unit || "Não informada", inline: true },
+            { name: "Unidade Especial Anterior", value: formData.previous_special_unit || "Não informada", inline: true },
             { name: "Experiência com Modulação", value: formData.radio_experience || "Não informada", inline: true }
           ]
         },
@@ -93,7 +93,7 @@ export default function ApplicationForm() {
             inline: false
           })),
           footer: {
-            text: "Sistema Automático de Recrutamento ASD"
+            text: "Sistema Automático de Recrutamento SPEED"
           },
           timestamp: new Date().toISOString()
         }
@@ -127,14 +127,14 @@ export default function ApplicationForm() {
         <section className="py-32 bg-slate-950">
           <div className="max-w-lg mx-auto px-6 text-center">
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", duration: 0.6 }}>
-              <div className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-10 h-10 text-green-400" />
+              <div className="w-20 h-20 rounded-full bg-emerald-500/10 flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="w-10 h-10 text-emerald-400" />
               </div>
             </motion.div>
             <h2 className="text-2xl font-bold text-white mb-3">Candidatura Enviada</h2>
             <p className="text-slate-400 leading-relaxed">
-              A sua candidatura foi recebida com sucesso. A nossa equipa de recrutamento analisará
-              as suas respostas. Aguarde o retorno no departamento.
+              A sua candidatura foi recebida com sucesso. O Comando e a Instrução da SPEED analisarão
+              as suas respostas. Aguarde o contato da unidade.
             </p>
           </div>
         </section>
@@ -143,8 +143,8 @@ export default function ApplicationForm() {
     );
   }
 
-  const inputClass = "bg-slate-900/50 border-slate-700 text-white focus:border-amber-500 h-12";
-  const textareaClass = "bg-slate-900/50 border-slate-700 text-white focus:border-amber-500 min-h-[100px]";
+  const inputClass = "bg-slate-900/50 border-slate-700 text-white focus:border-emerald-500 h-12";
+  const textareaClass = "bg-slate-900/50 border-slate-700 text-white focus:border-emerald-500 min-h-[100px]";
   const labelClass = "text-slate-300 text-xs tracking-wider uppercase mb-2 block";
 
   return (
@@ -152,7 +152,7 @@ export default function ApplicationForm() {
       <PageHeader
         badge="Processo Seletivo"
         title="Formulário de Ingresso"
-        subtitle="Preencha os seus dados e selecione a vaga desejada. As perguntas técnicas vão ajustar-se consoante a sua escolha."
+        subtitle="Preencha os seus dados e selecione a especialidade desejada. O questionário teórico exigirá conhecimento profundo do Manual de Conduta SPEED."
       />
 
       <section className="py-20 bg-slate-950">
@@ -161,19 +161,19 @@ export default function ApplicationForm() {
 
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-400 font-bold text-sm">1</div>
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 font-bold text-sm">1</div>
                 <h2 className="text-xl font-bold text-white">Dados Operacionais</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="md:col-span-2">
                   <Label className={labelClass}>Vaga Pretendida *</Label>
                   <Select required value={formData.role} onValueChange={(v) => handleChange('role', v)}>
-                    <SelectTrigger className="bg-slate-900/80 border-amber-500/50 text-white h-14 font-semibold text-lg">
-                      <SelectValue placeholder="Selecione se quer ser Piloto ou Atirador" />
+                    <SelectTrigger className="bg-slate-900/80 border-emerald-500/50 text-white h-14 font-semibold text-lg">
+                      <SelectValue placeholder="Selecione o seu foco de atuação" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="piloto">Piloto de Aeronave</SelectItem>
-                      <SelectItem value="atirador">Atirador / Copiloto</SelectItem>
+                      <SelectItem value="piloto">Piloto de Interceptação (Motorista)</SelectItem>
+                      <SelectItem value="p2">Passageiro P2 (Modulação / Apoio)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -181,7 +181,7 @@ export default function ApplicationForm() {
                 <div className="md:col-span-2">
                   <Label className={labelClass}>QRA *</Label>
                   <Input required value={formData.qra} onChange={(e) => handleChange('qra', e.target.value)}
-                    className={inputClass} placeholder="Ex: Alpha-7 / Seu Nome" />
+                    className={inputClass} placeholder="Ex: Seu Nome / QRA" />
                 </div>
                 <div>
                   <Label className={labelClass}>Badge</Label>
@@ -220,8 +220,8 @@ export default function ApplicationForm() {
               </div>
               <div className="space-y-5">
                 <div>
-                  <Label className={labelClass}>Já fez parte de alguma unidade aérea?</Label>
-                  <Select value={formData.previous_air_unit} onValueChange={(v) => handleChange('previous_air_unit', v)}>
+                  <Label className={labelClass}>Já fez parte de alguma unidade tática/especial?</Label>
+                  <Select value={formData.previous_special_unit} onValueChange={(v) => handleChange('previous_special_unit', v)}>
                     <SelectTrigger className={inputClass}>
                       <SelectValue placeholder="Selecione" />
                     </SelectTrigger>
@@ -232,7 +232,7 @@ export default function ApplicationForm() {
                   </Select>
                 </div>
                 <div>
-                  <Label className={labelClass}>Possui experiência com modulação?</Label>
+                  <Label className={labelClass}>Possui experiência com modulação de perseguição?</Label>
                   <Select value={formData.radio_experience} onValueChange={(v) => handleChange('radio_experience', v)}>
                     <SelectTrigger className={inputClass}>
                       <SelectValue placeholder="Selecione" />
@@ -255,12 +255,12 @@ export default function ApplicationForm() {
               </div>
               
               {!formData.role ? (
-                <div className="bg-amber-500/10 border border-amber-500/30 p-6 rounded-xl mt-6 text-center">
-                  <p className="text-amber-400 font-medium">Selecione a sua Vaga Pretendida na Seção 1 para carregar a prova teórica correta.</p>
+                <div className="bg-emerald-500/10 border border-emerald-500/30 p-6 rounded-xl mt-6 text-center">
+                  <p className="text-emerald-400 font-medium">Selecione a sua Vaga Pretendida na Seção 1 para carregar a prova teórica correta.</p>
                 </div>
               ) : (
                 <>
-                  <p className="text-slate-500 text-xs mb-8 ml-11">Responda com base nos manuais oficiais da ASD.</p>
+                  <p className="text-slate-500 text-xs mb-8 ml-11">Responda com base no Manual de Conduta SPEED.</p>
                   <div className="space-y-6">
                     {roleQuestions[formData.role].map((q) => (
                       <div key={q.field}>
@@ -288,16 +288,16 @@ export default function ApplicationForm() {
               </div>
               <div className="space-y-4 bg-slate-900/30 border border-slate-800 rounded-xl p-6">
                 {[
-                  { id: 'manuals', key: 'manuals', text: 'Confirmo que li e compreendi todos os manuais da ASD (Conduta e Instrução Teórica).' },
-                  { id: 'hierarchy', key: 'hierarchy', text: 'Confirmo o meu compromisso com a hierarquia e disciplina exigidas pela divisão.' },
-                  { id: 'rules', key: 'rules', text: 'Declaro ciência das regras do servidor e comprometo-me a cumpri-las integralmente.' },
+                  { id: 'manuals', key: 'manuals', text: 'Confirmo que li e compreendi o Manual de Conduta SPEED, incluindo todas as regras operacionais e de modulação.' },
+                  { id: 'hierarchy', key: 'hierarchy', text: 'Confirmo o meu compromisso com a hierarquia da unidade e a disciplina durante os acompanhamentos.' },
+                  { id: 'rules', key: 'rules', text: 'Declaro ciência de que qualquer situação desrespeitosa ou falta de conduta resultará em advertência ou expulsão da Unidade.' },
                 ].map((item) => (
                   <div key={item.id} className="flex items-start gap-3">
                     <Checkbox
                       id={item.id}
                       checked={confirmations[item.key]}
                       onCheckedChange={(checked) => setConfirmations(prev => ({ ...prev, [item.key]: checked }))}
-                      className="mt-0.5 border-slate-600 data-[state=checked]:bg-amber-500 data-[state=checked]:border-amber-500"
+                      className="mt-0.5 border-slate-600 data-[state=checked]:bg-emerald-500 data-[state=checked]:border-emerald-500"
                     />
                     <label htmlFor={item.id} className="text-sm text-slate-300 leading-relaxed cursor-pointer">{item.text}</label>
                   </div>
@@ -309,7 +309,7 @@ export default function ApplicationForm() {
               <Button
                 type="submit"
                 disabled={isSubmitting || !confirmations.manuals || !confirmations.hierarchy || !confirmations.rules || !formData.role}
-                className="w-full h-14 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm tracking-widest uppercase disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-full h-14 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm tracking-widest uppercase disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
                 {isSubmitting ? (
                   <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> A Enviar...</>
@@ -318,7 +318,7 @@ export default function ApplicationForm() {
                 )}
               </Button>
               <p className="text-center text-slate-600 text-xs mt-4">
-                Ao enviar, você concorda em ser submetido a uma avaliação teórica e prática (se aprovado).
+                Ao enviar, você concorda em ser submetido a uma avaliação teórica e prática (se aprovado pelo Comando da SPEED).
               </p>
             </div>
 

@@ -9,22 +9,22 @@ export default function Footer() {
           {/* Logo Atualizada */}
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center">
-               <img src="/logo.png" alt="Logo ASD" className="h-10 w-auto object-contain drop-shadow-md" />
+               <img src="/logo.png" alt="Logo SPEED" className="h-10 w-auto object-contain drop-shadow-md" />
             </div>
             <div>
-              <p className="text-white font-bold text-sm">ASD — Air Support Division</p>
-              <p className="text-slate-500 text-xs">Divisão de Suporte Aéreo</p>
+              <p className="text-white font-bold text-sm">SPEED</p>
+              <p className="text-slate-500 text-xs">Special Police Emergency Enforcement Division</p>
             </div>
           </div>
 
           {/* Texto central */}
           <p className="text-slate-500 text-xs text-center italic">
-            "Quem domina os céus, controla o campo."
+            "A prioridade é o acompanhamento, respeitando a sua vida e a dos civis."
           </p>
 
           {/* Direita */}
           <div className="text-right">
-            <p className="text-slate-600 text-xs">© 2026 ASD. Todos os direitos reservados.</p>
+            <p className="text-slate-600 text-xs">© 2026 SPEED. Todos os direitos reservados.</p>
           </div>
         </div>
       </div>

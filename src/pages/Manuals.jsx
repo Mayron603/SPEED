@@ -1,180 +1,76 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, GraduationCap, ChevronDown, ChevronRight, ExternalLink } from 'lucide-react';
+import { Shield, ChevronDown, ChevronRight, ExternalLink, Zap } from 'lucide-react';
 import PageHeader from '../components/shared/PageHeader';
 import Footer from '../components/shared/Footer';
 
 const manuals = [
   {
-    id: "conduta",
+    id: "conduta_speed",
     icon: Shield,
-    title: "Manual de Conduta",
-    color: "amber",
-    docsLink: "https://docs.google.com/document/d/1Y049q6zpxK3b_cljGbVFjlfjfcr9-bO_FFjcGC2i8P8/edit?usp=sharing",
+    title: "Manual de Conduta SPEED",
+    color: "emerald",
+    docsLink: "https://docs.google.com/document/d/16ATNZOWuQmj9V-dr_njMyKTaujTtnczNKh1IkzyHiEA/edit?usp=sharing",
     sections: [
       {
-        title: "Função da ASD",
-        content: "O Grupamento Aéreo Especializado Policial tem como função fornecer suporte para as unidades terrestres em diversas ocorrências, fornecer apoio aéreo para os paramédicos na ausência de um piloto especializado do hospital e também atuar em operações previamente planejadas como as operações de reconhecimento e mapeamento."
+        title: "Função da Unidade",
+        content: "A Unidade SPEED tem como principal fundamento ter uma performance elevada em relação às outras unidades de 4 rodas para interceptação de veículos de atributos de performance elevada.\n\nPilotos devem ser proficientes, conhecendo a Unidade Speed (Veículo) e tendo autoconhecimento na Cidade."
       },
       {
-        title: "Regras Operacionais",
-        content: `• Apenas Soldados+ poderão adentrar na unidade.
-• Todos os membros da ASD têm autorização de ir em ações grandes quando solicitado (Banco Central, Paleto, Fleeca, Nióbio, Joalheria e Carro Forte).
-• Não serão permitidas manobras arriscadas apenas para fins de diversão e exibição.
-• Apenas membros da ASD possuem autorização para pilotar o helicóptero.
-• Pousos em locais não homologados são permitidos apenas onde o acesso ao público é restringido, salvo em ocorrências onde o piloto ache necessário.
-• Proibido qualquer tipo de modificação na aeronave.
-• A ASD possui uma hierarquia interna e a mesma deverá ser respeitada dentro da aeronave independente da patente.
-• Aeronaves de tripulação solo devem manter total cautela, dando apenas apoio visual em situações de código 5.
-• Mantenha sempre uma comunicação limpa e assertiva na rádio.
-• Nenhum comportamento negativo ou má conduta serão aceitos dentro da unidade.
-• Prisioneiros não poderão ser transportados dentro da aeronave a menos que estejam em um local sem acesso terrestre e não tenha nenhuma aeronave de resgate do hospital disponível para transporte.
-• Está permitido a patrulha para monitoramento das aeronaves que realizam táxi aéreo.
-• O uso de helicópteros deverá ocorrer obrigatoriamente em altitude elevada, definida como acima da linha dos prédios da cidade. É estritamente proibido realizar voos abaixo dessa linha, exceto em situações específicas (como pousos em helipontos autorizados ou operações).`
+        title: "Regras Gerais",
+        content: `• Apenas policiais seniores+ poderão adentrar na unidade.
+• Não possuir nenhuma advertência na corporação.
+• A unidade SPEED tem TOTAL PRIORIDADE em acompanhamentos de alta velocidade a veículos de 4 rodas.
+• Qualquer situação desrespeitosa, falta de conduta, ou ação contra as regras, será avaliada e a pessoa será advertida ou expulsa.
+• Em caso de ser solicitada uma secundária em um acompanhamento, a SPEED, obtendo visual do veículo, poderá assumir a primária e continuar as atualizações na rádio.
+• O motorista integrante da unidade poderá chamar algum oficial para auxiliá-lo como passageiro (P2) na comunicação. De forma alguma o P2 trocará de lugar com o motorista.
+• Os membros da US usarão uniformes exclusivos da Unidade.
+• Sempre antes de assumir ocorrência como primária, deve-se solicitar na rádio.
+• A prioridade na perseguição é o acompanhamento, lembrando de assegurar sua vida e a dos civis, mantendo distanciamento seguro para evitar colisões.`
       },
       {
-        title: "Comunicação Operacional — Clock System",
-        content: `Para orientar as unidades de solo, o piloto deve usar a proa da viatura ou do veículo suspeito como referência "12 horas".
+        title: "Comunicação Operacional (Modulação)",
+        content: `A modulação da unidade Speed é de extrema responsabilidade, pois as outras unidades estarão prestando apoio de acordo com as informações passadas.
 
-• 12 Horas: À frente.
-• 6 Horas: Atrás.
-• 3 Horas: Direita.
-• 9 Horas: Esquerda.
+Exemplos de Modulação Básica:
 
-Exemplo: "Viatura 1, suspeito correndo para sua 3 horas (direita) em direção ao beco."`
-      },
-      {
-        title: "Prioridade de Rádio",
-        content: `Quando a ASD assume o visual de uma perseguição (Código 3) e solicita "Prioridade", todas as unidades de solo devem cessar comunicações não emergenciais.
+• INÍCIO DE PATRULHAMENTO:
+"QAP Central, SPEED 01 iniciando Código 0, qualquer QRR ou QRU, é só jogar na rede, QSL?"
 
-A ASD torna-se a narradora principal da rota do suspeito (Cantoneira), permitindo que as viaturas de solo foquem na direção e no cerco.`
-      },
-      {
-        title: "Aeronave — AS350",
-        content: "A ASD possui 1 modelo de aeronave, a AS350, que será utilizada por todos os pilotos. Não sendo permitido nenhum tipo de alteração visual."
-      },
-      {
-        title: "Hierarquia Interna",
-        content: "A ASD possui uma hierarquia interna e deve ser respeitada a todo momento dentro da aeronave, sendo ela: Estagiário, Co-Piloto, Comandante, Comandante Sênior, Instrutor, Instrutor Chefe e Comando de Unidade. Não tendo tempo mínimo nem máximo para ser promovido, dependendo somente do seu desempenho dentro da unidade."
-      },
-      {
-        title: "Glossário Técnico",
-        content: `1 - NOTAM — (Notification To Airman) Notificação, avisos e informes para o aviador/operador.
-2 - SOP — (Standard Operating Procedures) Procedimentos de operação padrão.
-3 - OPR — (Operation) Operação. Geralmente usado nos NOTAMs para descrever alguma alteração referente à operação da aeronave.
-4 - PROC — (Procedure) Procedimento.
-5 - ACFT — (Aircraft) Aeronave.
-6 - INFO — (Information) Informação.
-7 - ETA — (Estimated Time Arrival) Estimado de chegada. Ex: ETA 2M.
-8 - DEP — (Departure) Saída, Decolagem.
-9 - ARR — (Arrival) Chegada, Pouso.
-10 - TKOFF — (Take Off) Decolar, Decolagem.
-11 - ETO — (Estimated Time Over) Estimado de sobrevoo.
-12 - RTB — (Return to Base) Retornar à base.
-13 - POB — (People on Board) Número total de pessoas embarcadas na aeronave.
-14 - DLA — (Delay) Quando ocorre, ou ocorrerá, um atraso de qualquer natureza.
-15 - MAINT — (Manutenção) Quando a aeronave ou algo está em manutenção.
-16 - H — (Heliponto) Abreviação utilizada como HELIPONTO.
-17 - N S E W — (Pontos Cardeais) Norte, Sul, Leste, Oeste.
-17.1 - NE NW SE SW — (Pontos Colaterais) Nordeste, Noroeste, Sudeste, Sudoeste.
-18 - P/U — (Pick Up) Utilizado com a ideia de embarque ou extração.`
-      }
-    ]
-  },
-  {
-    id: "instrucao",
-    icon: GraduationCap,
-    title: "Manual de Instrução Teórica",
-    color: "blue",
-    docsLink: "https://docs.google.com/document/d/1_E6tyI1OT86_cyI8WtWegOj4khLPlnjA39L3ShswFwA/edit?usp=sharing",
-    sections: [
-      {
-        title: "Introdução ao Helicóptero",
-        content: "Helicóptero é um tipo de aeronave de asas giratórias, mais pesada que o ar, propulsada por um ou mais rotores horizontais que, quando girados pelo motor, criam sustentação e propulsão necessárias para o voo. São classificados como aeronave de asa rotativa, o que os distingue das aeronaves de asa-fixa convencional (avião). Permitem decolagem e pouso verticais, pairar, e deslocar-se para frente, para trás e lateralmente — atributos únicos que possibilitam operar em áreas congestionadas ou isoladas."
-      },
-      {
-        title: "Comandos de Voo — Coletivo",
-        content: `O comando coletivo é acionado pela mão esquerda do piloto e altera coletivamente os ângulos de passo das pás do rotor principal.
+• INÍCIO DE ACOMPANHAMENTO:
+"QAP Central, SPEED 01 iniciando acompanhamento a um (modelo e cor do veículo), em frente ao QTH (Local), a QTI Do(a) (QTH Futuro), solicito uma secundária. QSL?"
 
-• Quando o piloto puxa o coletivo para cima: aumenta o passo das pás, aumentando o ângulo de ataque e a sustentação. A aeronave ganha altitude.
-• Quando o piloto baixa o coletivo: a sustentação diminui. A aeronave perde altitude.
+• ASSUMINDO A PRIMÁRIA:
+"QAP Central, SPEED 01 com visual do (modelo e cor do veículo), assumindo primária, QSL?"
+(OBS: A SPEED sempre assume a primária de viaturas comuns. Se for outra Speed na primária, pode apenas auxiliar).
 
-O coletivo é o comando primário de altitude e secundário de RPM.`
+• FINALIZAÇÃO DE ACOMPANHAMENTO:
+"QAP Central, indivíduo do (veículo acompanhado) está em mãos, TKS pelo apoio."`
       },
       {
-        title: "Comandos de Voo — Cíclico",
-        content: `O cíclico é usado para alterar a inclinação do disco do rotor principal durante seu giro, controlando a direção de propulsão e permitindo movimentos para frente, para trás e para os lados. É o comando primário de velocidade, com influência secundária na altitude.
+        title: "Conduta de Perseguição",
+        content: `Durante uma perseguição, deve-se sempre lembrar que antecipações devem ser evitadas por parte da primária. O trabalho é unicamente manter o visual e estar atento a freadas bruscas do veículo.
 
-• Com o helicóptero em pairagem: mova o cíclico para esquerda/direita para deslocar lateralmente.
-• Em velocidade mais alta: o helicóptero executará rolamento e virará na direção aplicada.`
+• Deve haver respeito com as demais viaturas e com as posições que as mesmas tomarem.
+• O PIT é uma manobra extremamente proibida, deve-se utilizar o bom senso e a cautela.
+• Em situações em que a patente mais alta permitir exceder o número de viaturas da perseguição (ex: código 5 ou resgate), lembre-se que as viaturas que devem ficar nas primárias são as que têm prioridade (SPEED).`
       },
       {
-        title: "Comandos de Voo — Pedal (Guinada)",
-        content: `Os pedais controlam o passo das pás do rotor de cauda, aumentando ou diminuindo a força anti-torque. Controlam também a direção da proa da aeronave.
+        title: "Atribuições: Viatura Primária",
+        content: "A viatura primária deve apenas manter o visual e atentar-se a freadas bruscas em cruzamentos e curvas para evitar colisão com o veículo perseguido.\n\nÉ a única responsável pela modulação enquanto estiver no visual."
+      },
+      {
+        title: "Atribuições: Viatura Secundária",
+        content: `Durante um acompanhamento é a viatura de maior importância.
 
-• Para virar em baixa velocidade: use o pedal.
-• Helicópteros com rotor único usam os pedais para compensar o torque produzido pelo rotor principal.
-• Com o aumento da velocidade de deslocamento, os pedais ficam menos eficazes.`
+• Deve-se conhecer e atentar a todos os becos e vielas para prever onde o suspeito irá sair, assumindo a primária caso a P1 se enrosque.
+• Modulação apenas se a primária perder o visual.
+• A ultrapassagem da primária só é permitida se ela solicitar.
+• Não se deve seguir a primária dentro dos becos. A secundária deverá dar a volta (Corredor/Cerco) para evitar a perda do visual caso a primária sofra alguma colisão.`
       },
       {
-        title: "Efeito Solo",
-        content: "Ao pairar o helicóptero próximo ao solo, haverá influência do efeito solo. O efeito solo ocorre devido à interferência da superfície no padrão do fluxo de ar do rotor. Como há mudança na aerodinâmica, o piloto deve executar a compensação. Para auxiliar durante o treinamento inicial, o piloto pode usar o comando de pairagem automática."
-      },
-      {
-        title: "Voo Translacional",
-        content: "Ao se mover do estado de pairagem para voo à frente, o helicóptero entra em estado de voo translacional. O fluxo horizontal do ar no lado contrário do rotor principal aumenta sua eficiência, fornecendo mais força de sustentação sem aumento de potência. Em consequência, o helicóptero requer menos potência para se manter no ar. Rebaixe o coletivo se precisar manter a mesma altitude."
-      },
-      {
-        title: "Estol de Vórtice",
-        content: `O estol de vórtice é um fenômeno de grande perigo onde o helicóptero basicamente descende em sua própria corrente de ar descendente. O piloto detecta uma queda crescente que não pode ser interrompida pelo coletivo.
-
-• Em helicóptero com rotores em tandem: recuperação por comando no cíclico lateral ou no pedal.
-• Em helicóptero com rotor único: mover o controle cíclico para a frente, inclinando o bico da aeronave levemente para baixo e estabilizando o voo frontal.`
-      },
-      {
-        title: "Táticas de Voo Policial — Tipos de Órbita",
-        content: `A órbita é o voo circular em torno de um alvo fixo ou em movimento lento.
-
-• Órbita Alta (Vigilância): Realizada acima de 800 pés. Objetivo: manter o visual sem ser notado ou sem interferir no som ambiente do solo. Usada para monitoramento discreto.
-
-• Órbita Baixa (Intimidação/Apoio): Realizada entre 300 e 500 pés. Objetivo: exercer pressão psicológica no suspeito e fornecer iluminação direta com o holofote (Spotlight).`
-      },
-      {
-        title: "Táticas de Voo Policial — Curva de Perseguição",
-        content: `Durante perseguições a veículos em alta velocidade, o piloto NÃO deve voar diretamente sobre o alvo.
-
-• Posicionamento: Mantenha a aeronave levemente atrás e deslocada para a lateral (esquerda ou direita) do alvo.
-• Motivo: Isso permite que a câmera (operada pelo copiloto ou pelo próprio sistema) tenha um ângulo claro da rua à frente do suspeito, antecipando curvas e obstáculos para as unidades de solo.`
-      },
-      {
-        title: "Táticas de Voo Policial — Holofote e Câmera",
-        content: `Uso do Holofote (Nightsun):
-• Utilizado para auxiliar as unidades de solo em áreas de baixa luminosidade.
-• Regra de Ouro: Evite cegar as unidades aliadas. Mantenha o feixe focado no veículo suspeito ou na área de busca, nunca no para-brisa da viatura policial.
-
-Modos de Visão da Câmera:
-• Visão Normal (DTV): Usada durante o dia para identificar cores de veículos, roupas e detalhes específicos.
-• Visão Térmica (FLIR/Infravermelho): Essencial para operações noturnas ou busca de suspeitos em áreas de vegetação densa ou na água. O calor corporal se destacará contra o ambiente frio.`
-      },
-      {
-        title: "Procedimento de Emergência — Auto-Rotação",
-        content: `A auto-rotação é um estado de voo em que o sistema do rotor principal gira apenas em decorrência do movimento ascendente do ar pelo rotor, sem a atuação do motor. Isso permite que o helicóptero pouse em segurança em caso de falha total do motor, graças ao sistema de roda livre da caixa de transmissão.
-
-Procedimento:
-1. Durante perda de potência, rebaixe o coletivo imediatamente.
-2. Incline o bico para baixo para ganhar velocidade frontal ou para cima para reduzir velocidade em excesso.
-3. Mantenha RPM nominal e faça voo planado até se aproximar do solo.
-4. Eleve o coletivo antes da aterrissagem para reduzir a velocidade vertical e pousar com segurança.`
-      },
-      {
-        title: "Procedimento de Emergência — Perda do Rotor de Cauda",
-        content: `Helicópteros equipados com rotor de cauda podem sofrer perda de autoridade do anti-torque. Em tais circunstâncias, tente pousar enquanto mantém velocidade suficiente.
-
-ATENÇÃO: A reação instintiva de "puxar" o comando coletivo é incorreta — isso faria cair o RPM, causando estol do rotor principal, perda de potência do rotor de cauda, giro incontrolável da aeronave para a direita e queda em rotação até o impacto com o solo.`
-      },
-      {
-        title: "Instrumentos de Voo — Altímetro",
-        content: "O altímetro mostra a altitude da aeronave acima do nível do mar ao medir a diferença entre a pressão nas cápsulas aneróides dentro do instrumento e a pressão atmosférica obtida pelo sistema de pressão estática. A unidade mais comum é o hectopascal (hPa). O altímetro deve ser ajustado para a pressão barométrica local para leituras precisas. À medida que a aeronave sobe, a pressão estática diminui, fazendo com que o altímetro indique maior altitude."
+        title: "Atribuições: Viatura Terciária",
+        content: "Deve-se atentar a formação de um roadblock na saída mais óbvia que o veículo poderá tomar.\n\nImportante: A obstrução de beco (100%) só pode ser realizada após 15 minutos de perseguição ou se a maior patente no acompanhamento autorizar."
       }
     ]
   }
@@ -187,11 +83,11 @@ function ManualSection({ section, isOpen, onToggle }) {
         onClick={onToggle}
         className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-slate-800/20 transition-colors"
       >
-        <span className={`font-semibold text-sm ${isOpen ? 'text-amber-400' : 'text-slate-200'}`}>
+        <span className={`font-semibold text-sm ${isOpen ? 'text-emerald-400' : 'text-slate-200'}`}>
           {section.title}
         </span>
         {isOpen ? (
-          <ChevronDown className="w-4 h-4 text-amber-400 flex-shrink-0" />
+          <ChevronDown className="w-4 h-4 text-emerald-400 flex-shrink-0" />
         ) : (
           <ChevronRight className="w-4 h-4 text-slate-500 flex-shrink-0" />
         )}
@@ -216,7 +112,7 @@ function ManualSection({ section, isOpen, onToggle }) {
 }
 
 export default function Manuals() {
-  const [activeManual, setActiveManual] = useState("conduta");
+  const [activeManual, setActiveManual] = useState("conduta_speed");
   const [openSections, setOpenSections] = useState({});
 
   const toggleSection = (manualId, sectionIndex) => {
@@ -225,16 +121,15 @@ export default function Manuals() {
   };
 
   const colorMap = {
-    amber: { bg: "bg-amber-500/10", text: "text-amber-400", border: "border-amber-500/30", activeBg: "bg-amber-500/20" },
-    blue: { bg: "bg-blue-500/10", text: "text-blue-400", border: "border-blue-500/30", activeBg: "bg-blue-500/20" },
+    emerald: { bg: "bg-emerald-500/10", text: "text-emerald-400", border: "border-emerald-500/30", activeBg: "bg-emerald-500/20" }
   };
 
   return (
     <div>
       <PageHeader
         badge="Documentação Oficial"
-        title="Manuais e Documentos"
-        subtitle="Acesse os manuais oficiais da ASD. Leitura obrigatória para todos os membros e candidatos."
+        title="Manuais SPEED"
+        subtitle="Consulte os protocolos de atuação, regras e atribuições de viatura. Leitura obrigatória para Operadores e Recrutas."
       />
 
       <section className="py-20 bg-slate-950">
@@ -273,10 +168,10 @@ export default function Manuals() {
                 transition={{ duration: 0.3 }}
                 className={`bg-slate-900/40 border ${colors.border} rounded-xl overflow-hidden`}
               >
-                {/* Cabeçalho do Manual (Aqui foi adicionado o botão do Google Docs) */}
+                {/* Cabeçalho do Manual com o link fornecido */}
                 <div className="px-6 py-5 border-b border-slate-800/50 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
                   <div className="flex items-center gap-3">
-                    <manual.icon className={`w-5 h-5 ${colors.text}`} />
+                    <Zap className={`w-5 h-5 ${colors.text}`} />
                     <h3 className="text-lg font-bold text-white">{manual.title}</h3>
                   </div>
                   

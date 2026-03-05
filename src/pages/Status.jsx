@@ -10,7 +10,7 @@ import Footer from '../components/shared/Footer';
 
 const statusConfig = {
   operacional: { label: "Operacional", icon: CheckCircle, color: "text-green-400", bg: "bg-green-500/10", border: "border-green-500/30", pulse: "bg-green-400" },
-  em_treinamento: { label: "Em Treinamento", icon: Clock, color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/30", pulse: "bg-amber-400" },
+  em_treinamento: { label: "Em Treinamento", icon: Clock, color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/30", pulse: "bg-emerald-400" },
   fora_de_servico: { label: "Fora de Serviço", icon: AlertTriangle, color: "text-red-400", bg: "bg-red-500/10", border: "border-red-500/30", pulse: "bg-red-400" },
 };
 
@@ -31,8 +31,8 @@ export default function Status() {
     <div>
       <PageHeader
         badge="Central de Status"
-        title="Status da ASD"
-        subtitle="Acompanhe o status operacional da divisão e comunicados oficiais em tempo real."
+        title="Status da SPEED"
+        subtitle="Acompanhe o status operacional da unidade e comunicados oficiais em tempo real."
       />
 
       <section className="py-20 bg-slate-950">
@@ -64,7 +64,7 @@ export default function Status() {
           {/* Announcements */}
           <div>
             <div className="flex items-center gap-3 mb-8">
-              <Megaphone className="w-5 h-5 text-amber-400" />
+              <Megaphone className="w-5 h-5 text-emerald-400" />
               <h2 className="text-xl font-bold text-white">Comunicados Oficiais</h2>
             </div>
 

@@ -1,19 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Eye, Heart, Plane, Users, Radio } from 'lucide-react';
+import { Target, Eye, ShieldCheck, Zap, Map, ShieldAlert } from 'lucide-react';
 import PageHeader from '../components/shared/PageHeader';
 import Footer from '../components/shared/Footer';
 
 const values = [
-  { icon: Target, title: "Missão", text: "Prover suporte aéreo de excelência às forças policiais, garantindo segurança, eficiência operacional e resposta imediata em qualquer cenário." },
-  { icon: Eye, title: "Visão", text: "Ser reconhecida como a divisão aérea mais preparada, disciplinada e confiável, referência em operações aéreas de segurança pública." },
-  { icon: Heart, title: "Valores", text: "Disciplina, Hierarquia, Comprometimento, Lealdade, Excelência Operacional e Respeito à cadeia de comando." },
+  { icon: Target, title: "Missão", text: "Garantir a ordem nas vias através da interceptação implacável de veículos de alta performance, assegurando prioritariamente a vida dos civis e oficiais através de uma condução tática e segura." },
+  { icon: Eye, title: "Visão", text: "Ser a unidade terrestre de elite mais respeitada da cidade, reconhecida pelo domínio técnico impecável de seus operadores e pela eficácia absoluta em acompanhamentos e cercos." },
+  { icon: ShieldCheck, title: "Valores", text: "Disciplina rigorosa, Cautela extrema, Proficiência no volante, Autoconhecimento da cidade, Respeito à hierarquia e Foco absoluto na modulação e no acompanhamento." },
 ];
 
 const responsibilities = [
-  { icon: Plane, title: "Aviação no Suporte Policial", text: "A aviação desempenha papel crucial no suporte às operações policiais, oferecendo vantagem tática incomparável. Do alto, é possível monitorar grandes áreas, coordenar perseguições e garantir a segurança de operações complexas." },
-  { icon: Users, title: "Integração com Unidades Terrestres", text: "A ASD opera em total sincronia com as unidades terrestres. Nossos pilotos e copilotos são treinados para comunicação constante via rádio, fornecendo posições, rotas de fuga e apoio visual em tempo real." },
-  { icon: Radio, title: "Responsabilidades da Divisão", text: "Patrulhamento aéreo preventivo, apoio em perseguições, monitoramento de áreas de risco, resgate de agentes em perigo, interceptação de veículos e aeronaves, e reconhecimento de terreno para operações especiais." },
+  { icon: Zap, title: "Acompanhamento de Alta Performance", text: "Nossa especialidade é a viatura primária. Focamos em manter o visual de veículos altamente modificados sem recorrer a antecipações ou manobras proibidas como o PIT, garantindo uma perseguição limpa e a atualização constante na rádio." },
+  { icon: Map, title: "Antecipação, Becos e Vielas", text: "O verdadeiro diferencial da SPEED é o autoconhecimento da cidade. A viatura secundária mapeia rotas de fuga, cobre becos e vielas (Corredor e Cerco) e está sempre pronta para assumir a primária caso haja algum imprevisto." },
+  { icon: ShieldAlert, title: "Roadblocks e Obstruções", text: "Quando a perseguição se estende, a viatura terciária entra em ação coordenando roadblocks em saídas óbvias. A obstrução 100% dos becos é calculada e feita de forma estratégica e autorizada, visando encurralar os suspeitos com segurança." },
 ];
 
 export default function About() {
@@ -21,8 +21,8 @@ export default function About() {
     <div>
       <PageHeader
         badge="Institucional"
-        title="Sobre a ASD"
-        subtitle="Conheça a história, missão e valores da divisão aérea mais preparada para proteger os céus."
+        title="Sobre a SPEED"
+        subtitle="Conheça a história, missão e valores da Special Police Emergency Enforcement Division."
       />
 
       <section className="py-20 bg-slate-950">
@@ -34,20 +34,14 @@ export default function About() {
             viewport={{ once: true }}
             className="mb-20"
           >
-            <span className="text-amber-500 text-xs font-bold tracking-[0.3em] uppercase">Nossa História</span>
-            <h2 className="text-3xl font-bold text-white mt-3 mb-6">A Origem da ASD</h2>
+            <span className="text-emerald-500 text-xs font-bold tracking-[0.3em] uppercase">Nossa História</span>
+            <h2 className="text-3xl font-bold text-white mt-3 mb-6">A Origem da SPEED</h2>
             <div className="bg-slate-900/40 border border-slate-800 rounded-xl p-8">
               <p className="text-slate-300 leading-relaxed mb-4">
-                A Air Support Division foi fundada com a necessidade crescente de uma unidade aérea 
-                especializada que pudesse atuar de forma autônoma e integrada com as forças terrestres. 
-                Desde sua criação, a ASD se consolidou como uma divisão de elite, composta por pilotos 
-                altamente treinados e comprometidos com a excelência operacional.
+                A Special Police Emergency Enforcement Division (SPEED) foi fundada diante da necessidade crescente de combater suspeitos que utilizam veículos com atributos de performance elevadíssima. Com as viaturas convencionais encontrando dificuldades para acompanhar esses alvos nas vias urbanas e rodovias, tornou-se imperativa a criação de uma força terrestre de interceptação rápida.
               </p>
               <p className="text-slate-300 leading-relaxed">
-                Com o passar do tempo, a divisão expandiu suas capacidades, incorporando novos procedimentos 
-                de voo, protocolos de comunicação avançados e técnicas de patrulhamento que a tornaram 
-                referência em suporte aéreo policial. Hoje, a ASD é sinônimo de disciplina, competência 
-                e dedicação.
+                Selecionando apenas os policiais mais experientes e com zero advertências na corporação, a SPEED formou uma unidade onde a pilotagem proficiente se une ao profundo conhecimento geográfico da cidade. Hoje, nossos operadores são os mestres dos becos e vielas, garantindo prioridade absoluta em acompanhamentos de 4 rodas e mantendo o lema de que a vida está sempre em primeiro lugar.
               </p>
             </div>
           </motion.div>
@@ -61,10 +55,10 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-slate-900/40 border border-slate-800 rounded-xl p-8 hover:border-amber-500/20 transition-all"
+                className="bg-slate-900/40 border border-slate-800 rounded-xl p-8 hover:border-emerald-500/20 transition-all"
               >
-                <div className="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center mb-5">
-                  <item.icon className="w-6 h-6 text-amber-400" />
+                <div className="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-5">
+                  <item.icon className="w-6 h-6 text-emerald-400" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">{item.text}</p>
@@ -74,7 +68,7 @@ export default function About() {
 
           {/* Responsibilities */}
           <div>
-            <span className="text-amber-500 text-xs font-bold tracking-[0.3em] uppercase">Atuação</span>
+            <span className="text-emerald-500 text-xs font-bold tracking-[0.3em] uppercase">Atuação Tática</span>
             <h2 className="text-3xl font-bold text-white mt-3 mb-8">Responsabilidades e Integração</h2>
             <div className="space-y-6">
               {responsibilities.map((item, index) => (
@@ -86,8 +80,8 @@ export default function About() {
                   transition={{ delay: index * 0.1 }}
                   className="flex gap-6 bg-slate-900/30 border border-slate-800 rounded-xl p-6"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-6 h-6 text-amber-400" />
+                  <div className="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
