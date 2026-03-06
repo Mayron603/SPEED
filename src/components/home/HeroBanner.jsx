@@ -9,7 +9,7 @@ export default function HeroBanner() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 pt-16">
       
       {/* Ticker de Status Tático (Abaixo da navbar) */}
-      <div className="absolute top-16 left-0 w-full bg-emerald-500/10 border-b border-emerald-500/20 py-1.5 overflow-hidden z-30">
+      <div className="absolute top-16 left-0 w-full bg-emerald-500/10 border-b border-emerald-500/20 py-1.5 overflow-hidden z-30 pointer-events-none">
         <div className="flex w-[200%] animate-marquee">
           <div className="flex justify-around w-1/2 text-[10px] text-emerald-500/80 font-mono tracking-[0.2em] whitespace-nowrap">
             <span>● SISTEMAS SPEED ONLINE</span>
@@ -31,14 +31,14 @@ export default function HeroBanner() {
       {/* VÍDEO DE FUNDO */}
       <video
         autoPlay loop muted playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0 opacity-60 scale-105"
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-60 scale-105 pointer-events-none"
       >
         <source src="/video.mp4" type="video/mp4" />
       </video>
 
       {/* OVERLAYS CINEMATOGRÁFICOS */}
-      <div className="absolute inset-0 bg-slate-950/50 z-10" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#020617_100%)] z-10" />
+      <div className="absolute inset-0 bg-slate-950/50 z-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#020617_100%)] z-10 pointer-events-none" />
 
       {/* EFEITO DE SCANLINE TÁTICO (TEXTURA DE CÂMERA) */}
       <div 
@@ -49,7 +49,7 @@ export default function HeroBanner() {
         }} 
       />
 
-      <div className="relative z-20 max-w-5xl mx-auto px-6 text-center mt-8">
+      <div className="relative z-40 max-w-5xl mx-auto px-6 text-center mt-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export default function HeroBanner() {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           {/* Badge com Efeito Glassmorphism */}
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-emerald-500/30 bg-black/20 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:bg-black/40 transition-colors cursor-crosshair">
+          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-emerald-500/30 bg-black/20 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:bg-black/40 transition-colors">
             <Shield className="w-4 h-4 text-emerald-500 animate-pulse" />
             <span className="text-emerald-400 text-xs font-bold tracking-[0.4em] uppercase">
               Unidade de Interceptação Rápida
@@ -106,13 +106,13 @@ export default function HeroBanner() {
       <motion.div 
         animate={{ y: [0, 12, 0] }}
         transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 opacity-40 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 opacity-40 flex flex-col items-center gap-2 pointer-events-none"
       >
         <span className="text-[10px] text-white tracking-[0.3em] uppercase rotate-90 mb-8">Scroll</span>
         <div className="w-[1px] h-12 bg-gradient-to-b from-emerald-500 to-transparent" />
       </motion.div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-slate-950 to-transparent z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-slate-950 to-transparent z-20 pointer-events-none" />
     </section>
   );
 }
