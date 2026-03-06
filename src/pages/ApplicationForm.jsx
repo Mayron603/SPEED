@@ -22,6 +22,12 @@ const initialForm = {
   q3: "",
   q4: "",
   q5: "",
+  q6: "",
+  q7: "",
+  q8: "",
+  q9: "",
+  q10: "",
+  q11: "",
 };
 
 const questions = [
@@ -30,6 +36,12 @@ const questions = [
   { field: 'q3', label: '3. Qual é a regra estabelecida no manual sobre a utilização da manobra PIT?' },
   { field: 'q4', label: '4. Explique o que é permitido e o que é expressamente proibido em relação ao passageiro (P2).' },
   { field: 'q5', label: '5. Quando é permitido realizar a obstrução de 100% (roadblock) na saída de um beco?' },
+  { field: 'q6', label: '6. Em uma perseguição de alta velocidade, o que você considera mais importante?' },
+  { field: 'q7', label: '7. Em quais situações, a primária deve abrir código 3?' },
+  { field: 'q8', label: '8. O que um piloto deve evitar fazer durante uma perseguição em alta velocidade?' },
+  { field: 'q9', label: '9. Se outra viatura estiver melhor posicionada para continuar a perseguição, qual deve ser sua atitude?' },
+  { field: 'q10', label: '10. O que é a técnica de contenção por viaturas e em que situação ela deve ser utilizada?' },
+  { field: 'q11', label: '11. Explique como um piloto deve abordar curvas em alta velocidade durante uma perseguição para manter controle do veículo.' },
 ];
 
 export default function ApplicationForm() {
@@ -47,7 +59,7 @@ export default function ApplicationForm() {
     if (!confirmations.manuals || !confirmations.hierarchy || !confirmations.rules) return;
     setIsSubmitting(true);
 
-    const webhookUrl = "https://discord.com/api/webhooks/1478402690508914872/Tc5x3A8oAtPv9qctyoX1Q-wBIiw_sxkMNs1lkEPBzda-zwK2NBmo9O6fm2UfdAGkfdqL";
+    const webhookUrl = "https://discord.com/api/webhooks/1479288481262997656/T_n2n9PL3qfx616YVgT6WRuTnzr4UW6IQwP24y1BYMxHGeBhLMO0Gd2g2x6BzyTNdJoB";
     const embedColor = 1047124; // Verde Esmeralda escuro
 
     const payload = {
