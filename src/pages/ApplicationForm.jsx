@@ -15,7 +15,6 @@ const initialForm = {
   badge: "",
   age: "",
   availability: "",
-  role: "", 
   previous_special_unit: "",
   radio_experience: "",
   q1: "",
@@ -25,22 +24,13 @@ const initialForm = {
   q5: "",
 };
 
-const roleQuestions = {
-  piloto: [
-    { field: 'q1', label: '1. Qual a função principal da Unidade SPEED?' },
-    { field: 'q2', label: '2. Como a Viatura Primária deve agir nas curvas e cruzamentos para não perder o suspeito?' },
-    { field: 'q3', label: '3. Qual é a regra estabelecida no manual sobre a utilização da manobra PIT?' },
-    { field: 'q4', label: '4. Durante um acompanhamento, o que deve ser priorizado acima de tudo?' },
-    { field: 'q5', label: '5. Se uma viatura comum pedir apoio (secundária), quando a SPEED pode assumir a primária?' },
-  ],
-  p2: [
-    { field: 'q1', label: '1. Qual é a modulação exata para assumir a viatura primária?' },
-    { field: 'q2', label: '2. Qual é a restrição mais importante em relação à troca de lugares entre o P2 e o Motorista?' },
-    { field: 'q3', label: '3. Como deve ser o comportamento da Viatura Secundária ao chegar em becos e vielas?' },
-    { field: 'q4', label: '4. Qual é a modulação correta para a "Finalização de Acompanhamento"?' },
-    { field: 'q5', label: '5. Quando é permitido realizar a obstrução de 100% (roadblock) na saída de um beco?' },
-  ]
-};
+const questions = [
+  { field: 'q1', label: '1. Qual a principal função e o fundamento da Unidade SPEED?' },
+  { field: 'q2', label: '2. Como a Viatura Secundária deve agir em relação aos becos e vielas durante uma perseguição?' },
+  { field: 'q3', label: '3. Qual é a regra estabelecida no manual sobre a utilização da manobra PIT?' },
+  { field: 'q4', label: '4. Explique o que é permitido e o que é expressamente proibido em relação ao passageiro (P2).' },
+  { field: 'q5', label: '5. Quando é permitido realizar a obstrução de 100% (roadblock) na saída de um beco?' },
+];
 
 export default function ApplicationForm() {
   const [formData, setFormData] = useState(initialForm);
@@ -49,22 +39,16 @@ export default function ApplicationForm() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (field, value) => {
-    if (field === 'role') {
-      setFormData(prev => ({ ...prev, role: value, q1: "", q2: "", q3: "", q4: "", q5: "" }));
-    } else {
-      setFormData(prev => ({ ...prev, [field]: value }));
-    }
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!confirmations.manuals || !confirmations.hierarchy || !confirmations.rules || !formData.role) return;
+    if (!confirmations.manuals || !confirmations.hierarchy || !confirmations.rules) return;
     setIsSubmitting(true);
 
     const webhookUrl = "https://discord.com/api/webhooks/1478402690508914872/Tc5x3A8oAtPv9qctyoX1Q-wBIiw_sxkMNs1lkEPBzda-zwK2NBmo9O6fm2UfdAGkfdqL";
-
-    const questionsUsed = roleQuestions[formData.role];
-    const embedColor = 2829617; // Cor #2B2D31 (Fundo exato do Discord para ficar invisível)
+    const embedColor = 1047124; // Verde Esmeralda escuro
 
     const payload = {
       username: "Central de Recrutamento SPEED",
@@ -72,8 +56,8 @@ export default function ApplicationForm() {
       avatar_url: "https://cdn.discordapp.com/attachments/1110324893750403072/1478398654426382396/logo.png?ex=69a8418a&is=69a6f00a&hm=5b7e73ed52d7bca432043dfbe296093cb2fa4a5f4c775bd4fad10368270fa478&", 
       embeds: [
         {
-          title: `NOVA CANDIDATURA RECEBIDA - ${formData.role.toUpperCase()}`,
-          description: `O candidato **${formData.qra}** submeteu o formulário para atuar como **${formData.role.toUpperCase()}**.`,
+          title: `NOVA CANDIDATURA RECEBIDA - SPEED`,
+          description: `O candidato **${formData.qra}** submeteu o formulário para ingressar na unidade.`,
           color: embedColor,
           fields: [
             { name: "QRA", value: formData.qra || "N/A", inline: true },
@@ -85,9 +69,9 @@ export default function ApplicationForm() {
           ]
         },
         {
-          title: `AVALIAÇÃO TEÓRICA (${formData.role.toUpperCase()})`,
+          title: `AVALIAÇÃO TEÓRICA`,
           color: embedColor,
-          fields: questionsUsed.map(q => ({
+          fields: questions.map(q => ({
             name: q.label,
             value: formData[q.field] || "Não respondeu",
             inline: false
@@ -110,7 +94,7 @@ export default function ApplicationForm() {
       if (response.ok) {
         setSubmitted(true);
       } else {
-        alert("Ocorreu um erro ao enviar para o Discord. Verifique sua conexão.");
+        alert("Ocorreu um erro ao enviar para o Discord. Verifique a sua conexão.");
       }
     } catch (error) {
       console.error("Erro no Webhook:", error);
@@ -134,7 +118,7 @@ export default function ApplicationForm() {
             <h2 className="text-2xl font-bold text-white mb-3">Candidatura Enviada</h2>
             <p className="text-slate-400 leading-relaxed">
               A sua candidatura foi recebida com sucesso. O Comando e a Instrução da SPEED analisarão
-              as suas respostas. Aguarde o contato da unidade.
+              as suas respostas. Aguarde o contacto da unidade.
             </p>
           </div>
         </section>
@@ -152,7 +136,7 @@ export default function ApplicationForm() {
       <PageHeader
         badge="Processo Seletivo"
         title="Formulário de Ingresso"
-        subtitle="Preencha os seus dados e selecione a especialidade desejada. O questionário teórico exigirá conhecimento profundo do Manual de Conduta SPEED."
+        subtitle="Preencha os seus dados. O questionário teórico exigirá conhecimento profundo do Manual de Conduta SPEED."
       />
 
       <section className="py-20 bg-slate-950">
@@ -165,19 +149,6 @@ export default function ApplicationForm() {
                 <h2 className="text-xl font-bold text-white">Dados Operacionais</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="md:col-span-2">
-                  <Label className={labelClass}>Vaga Pretendida *</Label>
-                  <Select required value={formData.role} onValueChange={(v) => handleChange('role', v)}>
-                    <SelectTrigger className="bg-slate-900/80 border-emerald-500/50 text-white h-14 font-semibold text-lg">
-                      <SelectValue placeholder="Selecione o seu foco de atuação" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="piloto">Piloto de Interceptação (Motorista)</SelectItem>
-                      <SelectItem value="p2">Passageiro P2 (Modulação / Apoio)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
                 <div className="md:col-span-2">
                   <Label className={labelClass}>QRA *</Label>
                   <Input required value={formData.qra} onChange={(e) => handleChange('qra', e.target.value)}
@@ -249,34 +220,26 @@ export default function ApplicationForm() {
             <div className="border-t border-slate-800" />
 
             <div>
-              <div className="flex items-center gap-3 mb-2">
+              <div className="flex items-center gap-3 mb-6">
                 <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 font-bold text-sm">3</div>
                 <h2 className="text-xl font-bold text-white">Questionário Técnico</h2>
               </div>
               
-              {!formData.role ? (
-                <div className="bg-emerald-500/10 border border-emerald-500/30 p-6 rounded-xl mt-6 text-center">
-                  <p className="text-emerald-400 font-medium">Selecione a sua Vaga Pretendida na Seção 1 para carregar a prova teórica correta.</p>
-                </div>
-              ) : (
-                <>
-                  <p className="text-slate-500 text-xs mb-8 ml-11">Responda com base no Manual de Conduta SPEED.</p>
-                  <div className="space-y-6">
-                    {roleQuestions[formData.role].map((q) => (
-                      <div key={q.field}>
-                        <Label className={labelClass}>{q.label}</Label>
-                        <Textarea 
-                          required 
-                          value={formData[q.field]} 
-                          onChange={(e) => handleChange(q.field, e.target.value)}
-                          className={textareaClass} 
-                          placeholder="Desenvolva a sua resposta..." 
-                        />
-                      </div>
-                    ))}
+              <p className="text-slate-500 text-xs mb-8">Responda com base no Manual de Conduta SPEED.</p>
+              <div className="space-y-6">
+                {questions.map((q) => (
+                  <div key={q.field}>
+                    <Label className={labelClass}>{q.label}</Label>
+                    <Textarea 
+                      required 
+                      value={formData[q.field]} 
+                      onChange={(e) => handleChange(q.field, e.target.value)}
+                      className={textareaClass} 
+                      placeholder="Desenvolva a sua resposta..." 
+                    />
                   </div>
-                </>
-              )}
+                ))}
+              </div>
             </div>
 
             <div className="border-t border-slate-800" />
@@ -308,7 +271,7 @@ export default function ApplicationForm() {
             <div className="pt-2">
               <Button
                 type="submit"
-                disabled={isSubmitting || !confirmations.manuals || !confirmations.hierarchy || !confirmations.rules || !formData.role}
+                disabled={isSubmitting || !confirmations.manuals || !confirmations.hierarchy || !confirmations.rules}
                 className="w-full h-14 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm tracking-widest uppercase disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
                 {isSubmitting ? (
@@ -318,7 +281,7 @@ export default function ApplicationForm() {
                 )}
               </Button>
               <p className="text-center text-slate-600 text-xs mt-4">
-                Ao enviar, você concorda em ser submetido a uma avaliação teórica e prática (se aprovado pelo Comando da SPEED).
+                Ao enviar, concorda em ser submetido a uma avaliação teórica e prática (se aprovado pelo Comando da SPEED).
               </p>
             </div>
 
