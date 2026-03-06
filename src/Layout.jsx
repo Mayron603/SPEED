@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from './utils';
 import { Menu, X } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const navItems = [
   { label: "Início", page: "Home" },
@@ -14,17 +13,9 @@ const navItems = [
 
 export default function Layout({ children, currentPageName }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  // Rastreador do movimento do rato para o cursor tático
-  useEffect(() => {
-    const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans cursor-crosshair">
+    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         :root {
@@ -39,17 +30,6 @@ export default function Layout({ children, currentPageName }) {
           scrollbar-color: #334155 transparent;
         }
       `}</style>
-
-      {/* CURSOR TÁTICO CUSTOMIZADO */}
-      <motion.div 
-        className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] hidden md:flex items-center justify-center mix-blend-difference"
-        animate={{ x: mousePos.x - 16, y: mousePos.y - 16 }}
-        transition={{ type: 'spring', damping: 30, stiffness: 200, mass: 0.2 }}
-      >
-        <div className="w-full h-full rounded-full border border-emerald-500/50 relative">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-emerald-500 rounded-full" />
-        </div>
-      </motion.div>
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50">
