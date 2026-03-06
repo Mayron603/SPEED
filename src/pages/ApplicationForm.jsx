@@ -65,7 +65,7 @@ export default function ApplicationForm() {
     const payload = {
       username: "Central de Recrutamento SPEED",
       // COLE O LINK DA SUA LOGO DO DISCORD AQUI ABAIXO:
-      avatar_url: "https://cdn.discordapp.com/attachments/1110324893750403072/1478398654426382396/logo.png?ex=69a8418a&is=69a6f00a&hm=5b7e73ed52d7bca432043dfbe296093cb2fa4a5f4c775bd4fad10368270fa478&", 
+      avatar_url: "https://media.discordapp.net/attachments/1468245788768468992/1471594951040172073/unnamed__2_-removebg-preview.png?ex=69ab3099&is=69a9df19&hm=f8b6ed1713d0f3ca9ae84e4d1ec4e415e24b4363e1ffda093cc0f2589b9486e5&=&format=webp&quality=lossless", 
       embeds: [
         {
           title: `NOVA CANDIDATURA RECEBIDA - SPEED`,
